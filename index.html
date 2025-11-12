@@ -105,6 +105,35 @@
             margin: 0.25rem 0 0.75rem 1.25rem;
         }
 
+        /* Enhanced readability for nested talking-point bullets */
+        ol>li>ul {
+            margin: 0.4rem 0 1rem 1.25rem;
+            padding-left: 0.5rem;
+            border-left: 2px solid #1e293b;
+            /* subtle vertical guide line */
+        }
+
+        ol>li>ul>li {
+            margin: 0.3rem 0;
+            color: #cbd5e1;
+            /* slightly lighter for emphasis */
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Differentiate parent list item titles (the major talking points) */
+        ol>li {
+            margin-bottom: 0.85rem;
+            color: #f1f5f9;
+            /* brighter for main headers */
+        }
+
+        ol>li strong {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+
         .small {
             font-size: 0.8rem;
             color: var(--muted);
@@ -233,7 +262,7 @@
                     problems are systemic: <strong>structure influences behavior</strong>. The central practice is
                     <strong>Systems Thinking</strong>, which integrates
                     four companion disciplines—Personal Mastery, Mental Models, Shared Vision, and Team Learning—into
-                        daily management.
+                    daily management.
                 </p>
                 <div class="small">Source: Soundview Executive Summary of <em>The Fifth Discipline</em> (2011).</div>
             </div>
@@ -244,14 +273,14 @@
                     <ul>
                         <li><strong>Systems Thinking (5th)</strong> – See interrelationships & feedback, not isolated
                             events; the integrator of all disciplines.</li>
-                            <li><strong>Personal Mastery</strong> – Clarify personal vision, face reality, hold “creative
-                                tension,” pursue lifelong learning.</li>
-                            <li><strong>Mental Models</strong> – Surface, test, and improve hidden assumptions via
-                                reflection & inquiry.</li>
-                            <li><strong>Shared Vision</strong> – Co-create a compelling future that turns compliance into
-                                commitment.</li>
-                            <li><strong>Team Learning</strong> – Dialogue + discussion → coordinated action and “operational
-                                trust.”</li>
+                        <li><strong>Personal Mastery</strong> – Clarify personal vision, face reality, hold “creative
+                            tension,” pursue lifelong learning.</li>
+                        <li><strong>Mental Models</strong> – Surface, test, and improve hidden assumptions via
+                            reflection & inquiry.</li>
+                        <li><strong>Shared Vision</strong> – Co-create a compelling future that turns compliance into
+                            commitment.</li>
+                        <li><strong>Team Learning</strong> – Dialogue + discussion → coordinated action and “operational
+                            trust.”</li>
                     </ul>
                 </div>
                 <div class="card">
@@ -269,7 +298,8 @@
                         <li>Dividing an elephant in half doesn’t make two small elephants.</li>
                         <li>There is no blame.</li>
                     </ol>
-                    <div class="small">Source: Soundview Executive Summary of <em>The Fifth Discipline</em> (2011).</div>
+                    <div class="small">Source: Soundview Executive Summary of <em>The Fifth Discipline</em> (2011).
+                    </div>
                 </div>
             </div>
 
@@ -285,26 +315,83 @@
             <div class="card">
                 <h2>5-Minute Talking Points</h2>
                 <ol>
-                    <li><strong>Hook (0:30)</strong> – Why do smart orgs repeat the same mistakes? Because of
-                        <em>learning disabilities</em> and unseen system structures. Solution: become a learning
-                        <li><strong>Hook (0:30)</strong> – Why do smart orgs repeat the same mistakes? Because of
-                                <em>learning disabilities</em> and unseen system structures. Solution: become a learning
-                                organization.</li>
-                            <li><strong>What is a Learning Organization? (0:45)</strong> – A place that nurtures new ways of
-                                thinking, collective aspiration, and learning at all levels.</li>
-                            <li><strong>The Five Disciplines (2:30)</strong> – Personal Mastery, Mental Models, Shared Vision,
-                                Team Learning, and Systems Thinking as the integrator. Include “creative tension,”
-                                reflection/inquiry, dialogue vs. discussion.</li>
-                            <li><strong>Key Laws of Systems Thinking (1:00)</strong> – “Today’s problems…”; “No blame”; “Small
-                                changes in right place…”; “Faster is slower.” Use 1–2 quick examples from your org.</li>
-                            <li><strong>Leader’s Role (0:45)</strong> – Leaders as <em>designers</em> of the ship: create
-                                structures, practices, and learning infrastructures that make reflection & collaboration
-                                routine.</li>
-                    <li><strong>Close (0:30)</strong> – Learning is the operating system. We’ll now take a quick
-                        diagnostic and then reflect on our Group Snapshot.</li>
+                    <li>
+                        <strong>Introduction (0:30)</strong>
+                        <ul>
+                            <li>Open with a question: <em>“Why do smart organizations keep making the same
+                                    mistakes?”</em></li>
+                            <li>Senge says most companies suffer from <strong>organizational learning
+                                    disabilities</strong> — quick fixes, blame, and short-term thinking.</li>
+                            <li>Goal: become a <strong>Learning Organization</strong> — one that learns faster than the
+                                environment changes.</li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong>What Is a Learning Organization? (0:45)</strong>
+                        <ul>
+                            <li>A place where people continually expand their ability to create desired results.</li>
+                            <li>Encourages questioning assumptions, sharing vision, and learning together at all levels.
+                            </li>
+                            <li>Key idea: <strong>structure influences behavior</strong> — change the system, not just
+                                the people.</li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong>The Five Disciplines (2:30)</strong>
+                        <ul>
+                            <li><strong>Personal Mastery:</strong> Clarify what truly matters; create “creative tension”
+                                between vision and reality.</li>
+                            <li><strong>Mental Models:</strong> Surface and challenge hidden assumptions through
+                                reflection and inquiry.</li>
+                            <li><strong>Shared Vision:</strong> Build genuine commitment, not compliance; co-create a
+                                future people want.</li>
+                            <li><strong>Team Learning:</strong> Combine dialogue (exploring) and discussion (deciding)
+                                to build trust and synergy.</li>
+                            <li><strong>Systems Thinking:</strong> See feedback loops and long-term patterns — the
+                                integrator of all other disciplines.</li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong>Key Laws of Systems Thinking (1:00)</strong>
+                        <ul>
+                            <li>“Today’s problems come from yesterday’s solutions.”</li>
+                            <li>“The harder you push, the harder the system pushes back.”</li>
+                            <li>“Cause and effect are not closely related in time and space.”</li>
+                            <li>“Small changes in the right place can have big impacts.”</li>
+                            <li>“There is no blame — we are all part of the same system.”</li>
+                            <li>Optional: share a brief example from your organization that illustrates one of these
+                                laws.</li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong>Leader’s Role (0:45)</strong>
+                        <ul>
+                            <li>Leaders are not just captains steering the ship — they are <strong>designers of the ship
+                                    itself</strong>.</li>
+                            <li>Create systems and cultures that make learning and reflection routine.</li>
+                            <li>Model openness, curiosity, and the mindset of seeing structures instead of assigning
+                                blame.</li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong>Closing (0:30)</strong>
+                        <ul>
+                            <li>“Learning isn’t a department — it’s the organization’s operating system.”</li>
+                            <li>When we see the system as a whole, we stop reacting and start creating the future we
+                                want.</li>
+                            <li>Transition: invite everyone to take the diagnostic to see how we collectively view our
+                                own organization’s learning capacity.</li>
+                        </ul>
+                    </li>
                 </ol>
             </div>
         </section>
+
 
         <!-- DIAGNOSTIC -->
         <section id="tab-diagnostic" role="tabpanel" aria-labelledby="tabbtn-diagnostic" hidden>
