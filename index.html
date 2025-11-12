@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Fifth Discipline – Learning Organization Check (Live)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      padding: 1.5rem;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 0.2rem;
+    }
+    h2 {
+      font-size: 1.1rem;
+      margin: 1.2rem 0 0.3rem;
+    }
+    p {
+      margin: 0.2rem 0 0.6rem;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+    .card {
+      background: #111827;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border: 1px solid #1f2937;
+    }
+    .label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+    }
+    input[type="range"] {
+      width: 100%;
+    }
+    .score {
+      font-weight: 600;
+      color: #38bdf8;
+      font-size: 0.9rem;
+    }
+    #summary, #groupSummary {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      background: #020817;
+      border: 1px solid #334155;
+      font-size: 0.9rem;
+    }
+    .tag {
+      display: inline-block;
+      padding: 0.15rem 0.45rem;
+      margin: 0.1rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      border: 1px solid #475569;
+      color: #9ca3af;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+    }
+    .controls input[type="text"] {
+      padding: 0.35rem 0.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid #374151;
+      background: #020817;
+      color: #e5e7eb;
+      flex: 1 1 120px;
+      min-width: 0;
+    }
+    button {
+      padding: 0.4rem 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid #38bdf8;
+      background: #0f172a;
+      color: #e5e7eb;
+      cursor: pointer;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+    button:hover {
+      background: #111827;
+    }
+    .small {
+      font-size: 0.7rem;
+      color: #6b7280;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.4rem;
+      font-size: 0.75rem;
+    }
+    th, td {
+      padding: 0.25rem 0.2rem;
+      border-bottom: 1px solid #111827;
+      text-align: left;
+      color: #9ca3af;
+    }
+    th {
+      color: #6b7280;
+      font-weight: 500;
+    }
+    footer {
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      color: #6b7280;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <h1>The Fifth Discipline: Learning Organization Check</h1>
+  <p>
+    Rate how well our organization practices each discipline (1 = low, 5 = strong).
+    Submit your results to see both your snapshot and our live group snapshot.
+  </p>
+
+  <div id="disciplines"></div>
+
+  <div class="controls">
+    <input type="text" id="participantName" placeholder="Name/initials (optional)" />
+    <input type="text" id="sessionCode" placeholder="Session code (e.g., 'Class1')" />
+    <button id="submitBtn">Submit my results</button>
+    <button id="clearSessionBtn">Clear this session (admin)</button>
+  </div>
+  <div class="small">
+    Tip: Pick a short Session Code (e.g., your class name). Everyone enters the same code so the
+    Group Snapshot reflects just this group.
+  </div>
+
+  <div id="summary"></div>
+  <div id="groupSummary"></div>
+
+  <footer>
+    Inspired by Peter Senge's <em>The Fifth Discipline</em>. For classroom discussion only.
+  </footer>
+
+  <!-- Firebase + App Logic -->
+  <script type="module">
+    /************ Firebase Imports ************/
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      onSnapshot,
+      query,
+      where,
+      serverTimestamp,
+      deleteDoc,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+
+    /************ TODO: Add your Firebase config here ************/
+    // In Firebase Console:
+    // 1. Create project
+    // 2. Add Web App
+    // 3. Copy config and paste below
+    const firebaseConfig = {
+      apiKey: "AIzaSyBnjVeGXmi3JZEelZBBMgjX-3M-LAWxMos",
+      authDomain: "learning-org-check.firebaseapp.com",
+      projectId: "learning-org-check",
+      storageBucket: "learning-org-check.firebasestorage.app",
+      messagingSenderId: "1057600219549",
+      appId: "1:1057600219549:web:151df7a9e0d375af1ca774"
+      // storageBucket, messagingSenderId, appId are optional but recommended; paste full snippet
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const RESPONSES_COLLECTION = "fifth_discipline_responses";
+
+    /************ App Setup ************/
+    const disciplines = [
+      {
+        id: "personalMastery",
+        name: "Personal Mastery",
+        blurb: "People pursue growth, align actions with a clear vision, and face reality honestly."
+      },
+      {
+        id: "mentalModels",
+        name: "Mental Models",
+        blurb: "Assumptions are discussed, challenged, and updated—not treated as untouchable truths."
+      },
+      {
+        id: "sharedVision",
+        name: "Shared Vision",
+        blurb: "There is a compelling, co-created vision that people genuinely care about."
+      },
+      {
+        id: "teamLearning",
+        name: "Team Learning",
+        blurb: "Teams reflect, listen, and think together instead of defending positions."
+      },
+      {
+        id: "systemsThinking",
+        name: "Systems Thinking (5th)",
+        blurb: "Decisions consider patterns, feedback loops, and long-term effects—not just quick fixes."
+      }
+    ];
+
+    const container = document.getElementById("disciplines");
+    const summaryEl = document.getElementById("summary");
+    const groupSummaryEl = document.getElementById("groupSummary");
+    const nameInput = document.getElementById("participantName");
+    const sessionInput = document.getElementById("sessionCode");
+    const submitBtn = document.getElementById("submitBtn");
+    const clearSessionBtn = document.getElementById("clearSessionBtn");
+
+    // Build sliders UI
+    disciplines.forEach(d => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="label-row">
+          <strong>${d.name}</strong>
+          <span class="score" id="${d.id}-score">3</span>
+        </div>
+        <p>${d.blurb}</p>
+        <input type="range" min="1" max="5" value="3" id="${d.id}-slider" />
+      `;
+      container.appendChild(card);
+    });
+
+    /************ Helper Functions ************/
+    function getCurrentScores() {
+      const scores = {};
+      let total = 0;
+      disciplines.forEach(d => {
+        const v = Number(document.getElementById(`${d.id}-slider`).value);
+        scores[d.id] = v;
+        total += v;
+      });
+      const index = (total / (disciplines.length * 5)) * 100;
+      return { scores, index };
+    }
+
+    function labelForIndex(index) {
+      if (index >= 80) return "Strong learning-organization tendencies.";
+      if (index >= 60) return "Good base; some disciplines need strengthening.";
+      if (index >= 40) return "Mixed; pockets of learning, but not yet systemic.";
+      return "At risk: learning is mostly ad hoc or blocked.";
+    }
+
+    function focusAreasFromScores(scores) {
+      const low = disciplines.filter(d => scores[d.id] <= 2).map(d => d.name);
+      return low.length
+        ? `<p><strong>Focus Areas (≤2):</strong> ${low.join(", ")}</p>`
+        : `<p><strong>Focus Areas:</strong> None scored very low — look for consistency and practice over time.</p>`;
+    }
+
+    function updateIndividualSummary() {
+      const { scores, index } = getCurrentScores();
+      disciplines.forEach(d => {
+        document.getElementById(`${d.id}-score`).textContent = scores[d.id];
+      });
+      summaryEl.innerHTML = `
+        <h2>Your Snapshot</h2>
+        <p><strong>Your Learning Organization Index:</strong> ${index.toFixed(0)}%</p>
+        <p>${labelForIndex(index)}</p>
+        ${focusAreasFromScores(scores)}
+        <div>
+          <span class="tag">Root causes, not symptoms</span>
+          <span class="tag">Shared vision</span>
+          <span class="tag">Systems thinking</span>
+          <span class="tag">Team learning</span>
+        </div>
+      `;
+    }
+
+    function renderGroupSummary(responses) {
+      if (!responses.length) {
+        groupSummaryEl.innerHTML = `
+          <h2>Group Snapshot</h2>
+          <p>No responses for this session code yet.</p>
+        `;
+        return;
+      }
+
+      const n = responses.length;
+      const sumScores = {};
+      disciplines.forEach(d => (sumScores[d.id] = 0));
+      let totalIndex = 0;
+
+      responses.forEach(r => {
+        disciplines.forEach(d => {
+          sumScores[d.id] += r.scores[d.id];
+        });
+        totalIndex += r.index;
+      });
+
+      const avgIndex = totalIndex / n;
+      const avgScores = {};
+      disciplines.forEach(d => {
+        avgScores[d.id] = sumScores[d.id] / n;
+      });
+
+      const sorted = disciplines
+        .map(d => ({ id: d.id, name: d.name, avg: avgScores[d.id] }))
+        .sort((a, b) => a.avg - b.avg);
+
+      const weakest = sorted[0];
+      const weakCluster = sorted.filter(x => x.avg <= weakest.avg + 0.25);
+      const weakText = weakCluster
+        .map(w => `${w.name} (${w.avg.toFixed(2)})`)
+        .join(", ");
+
+      groupSummaryEl.innerHTML = `
+        <h2>Group Snapshot</h2>
+        <p><strong>Participants in this session:</strong> ${n}</p>
+        <p><strong>Average Learning Organization Index:</strong> ${avgIndex.toFixed(0)}%</p>
+        <p>${labelForIndex(avgIndex)}</p>
+        <p><strong>Average by Discipline (1–5):</strong></p>
+        <table>
+          <thead>
+            <tr>
+              <th>Discipline</th>
+              <th>Avg Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${disciplines
+              .map(
+                d => `
+              <tr>
+                <td>${d.name}</td>
+                <td>${avgScores[d.id].toFixed(2)}</td>
+              </tr>`
+              )
+              .join("")}
+          </tbody>
+        </table>
+        <p><strong>Collective Weak Spot(s):</strong> ${weakText}</p>
+        <p class="small">
+          Use this to discuss where our organization behaves like a true learning organization
+          and where systemic barriers still exist (e.g., mental models, shared vision, or systems thinking).
+        </p>
+      `;
+    }
+
+    /************ Firestore Real-time Listener ************/
+    let unsubscribe = null;
+
+    function startSessionListener() {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+
+      const sessionCode = sessionInput.value.trim();
+      if (!sessionCode) {
+        groupSummaryEl.innerHTML = `
+          <h2>Group Snapshot</h2>
+          <p>Enter a Session Code so we can group results (e.g., "MBA-101").</p>
+        `;
+        return;
+      }
+
+      const colRef = collection(db, RESPONSES_COLLECTION);
+      const qRef = query(colRef, where("sessionCode", "==", sessionCode));
+
+      unsubscribe = onSnapshot(qRef, (snapshot) => {
+        const responses = snapshot.docs.map(doc => doc.data());
+        renderGroupSummary(responses);
+      }, (error) => {
+        console.error("Error listening to group data:", error);
+        groupSummaryEl.innerHTML = `
+          <h2>Group Snapshot</h2>
+          <p>Error loading group data. Check console/logs.</p>
+        `;
+      });
+    }
+
+    /************ Events ************/
+    document.querySelectorAll('input[type="range"]').forEach(slider => {
+      slider.addEventListener("input", updateIndividualSummary);
+    });
+
+    // When session code changes, re-bind listener
+    sessionInput.addEventListener("change", startSessionListener);
+    sessionInput.addEventListener("blur", startSessionListener);
+
+    submitBtn.addEventListener("click", async () => {
+      const { scores, index } = getCurrentScores();
+      const name = nameInput.value.trim() || "Anonymous";
+      const sessionCode = sessionInput.value.trim();
+
+      if (!sessionCode) {
+        alert("Please enter a Session Code (agreed code for your class) before submitting.");
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, RESPONSES_COLLECTION), {
+          name,
+          scores,
+          index,
+          sessionCode,
+          createdAt: serverTimestamp()
+        });
+        alert("Thanks! Your results are included in the group snapshot.");
+      } catch (err) {
+        console.error("Error submitting response:", err);
+        alert("Error submitting. Please try again or check console.");
+      }
+    });
+
+    clearSessionBtn.addEventListener("click", async () => {
+      const sessionCode = sessionInput.value.trim();
+      if (!sessionCode) {
+        alert("Enter the Session Code you want to clear, then click this.");
+        return;
+      }
+      if (!confirm(`Delete all responses for session "${sessionCode}" from Firestore?`)) return;
+
+      try {
+        const colRef = collection(db, RESPONSES_COLLECTION);
+        const qRef = query(colRef, where("sessionCode", "==", sessionCode));
+        const snap = await getDocs(qRef);
+        const deletions = snap.docs.map(doc => deleteDoc(doc.ref));
+        await Promise.all(deletions);
+        alert("Session cleared.");
+      } catch (err) {
+        console.error("Error clearing session:", err);
+        alert("Error clearing session. Check console.");
+      }
+    });
+
+    // Initial render
+    updateIndividualSummary();
+    // Note: group summary starts once a Session Code is set.
+  </script>
+</body>
+</html>
