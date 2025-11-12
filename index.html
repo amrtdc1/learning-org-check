@@ -1,280 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>The Fifth Discipline – Learning Organization Check (Live)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      margin: 0;
-      padding: 1.5rem;
-      background: #0f172a;
-      color: #e5e7eb;
-    }
-    h1 {
-      font-size: 1.6rem;
-      margin-bottom: 0.2rem;
-    }
-    h2 {
-      font-size: 1.1rem;
-      margin: 1.2rem 0 0.3rem;
-    }
-    p {
-      margin: 0.2rem 0 0.6rem;
-      font-size: 0.9rem;
-      color: #9ca3af;
-    }
-    .card {
-      background: #111827;
-      border-radius: 0.75rem;
-      padding: 1rem;
-      margin: 0.5rem 0;
-      border: 1px solid #1f2937;
-    }
-    .label-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.85rem;
-      margin-bottom: 0.25rem;
-    }
-    input[type="range"] {
-      width: 100%;
-    }
-    .score {
-      font-weight: 600;
-      color: #38bdf8;
-      font-size: 0.9rem;
-    }
-    #summary, #groupSummary {
-      margin-top: 1rem;
-      padding: 1rem;
-      border-radius: 0.75rem;
-      background: #020817;
-      border: 1px solid #334155;
-      font-size: 0.9rem;
-    }
-    .tag {
-      display: inline-block;
-      padding: 0.15rem 0.45rem;
-      margin: 0.1rem;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      border: 1px solid #475569;
-      color: #9ca3af;
-    }
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      align-items: center;
-      margin-top: 0.5rem;
-      font-size: 0.8rem;
-    }
-    .controls input[type="text"] {
-      padding: 0.35rem 0.5rem;
-      border-radius: 0.5rem;
-      border: 1px solid #374151;
-      background: #020817;
-      color: #e5e7eb;
-      flex: 1 1 120px;
-      min-width: 0;
-    }
-    button {
-      padding: 0.4rem 0.75rem;
-      border-radius: 0.5rem;
-      border: 1px solid #38bdf8;
-      background: #0f172a;
-      color: #e5e7eb;
-      cursor: pointer;
-      font-size: 0.8rem;
-      white-space: nowrap;
-    }
-    button:hover {
-      background: #111827;
-    }
-    .small {
-      font-size: 0.7rem;
-      color: #6b7280;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 0.4rem;
-      font-size: 0.75rem;
-    }
-    th, td {
-      padding: 0.25rem 0.2rem;
-      border-bottom: 1px solid #111827;
-      text-align: left;
-      color: #9ca3af;
-    }
-    th {
-      color: #6b7280;
-      font-weight: 500;
-    }
-    footer {
-      margin-top: 1rem;
-      font-size: 0.7rem;
-      color: #6b7280;
-    }
-    @media (max-width: 600px) {
-      h1 { font-size: 1.4rem; }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <title>The Fifth Discipline – Class Guide & Live Diagnostic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        :root {
+            --bg: #0f172a;
+            --panel: #111827;
+            --muted: #9ca3af;
+            --border: #1f2937;
+            --accent: #38bdf8;
+            --panel-2: #020817;
+            --border-2: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            margin: 0;
+            background: var(--bg);
+            color: #e5e7eb;
+            line-height: 1.45;
+        }
+
+        header {
+            padding: 1rem 1.25rem 0.25rem;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.6rem;
+        }
+
+        p.lead {
+            margin: 0.35rem 0 0.75rem;
+            color: var(--muted);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.25rem;
+            padding: 0 1.25rem 0.5rem;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            appearance: none;
+            border: 1px solid var(--border);
+            background: var(--panel);
+            color: #e5e7eb;
+            padding: 0.5rem 0.8rem;
+            border-radius: 0.5rem 0.5rem 0 0;
+            cursor: pointer;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .tab-btn[aria-selected="true"] {
+            border-bottom-color: transparent;
+            background: var(--panel-2);
+            color: #fff;
+        }
+
+        /* Sections */
+        main {
+            padding: 1rem 1.25rem 2rem;
+        }
+
+        section[hidden] {
+            display: none;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin: 0.65rem 0;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin: 0.4rem 0 0.3rem;
+        }
+
+        h3 {
+            font-size: 1rem;
+            margin: 0.4rem 0 0.2rem;
+        }
+
+        p,
+        li {
+            color: var(--muted);
+        }
+
+        ul {
+            margin: 0.25rem 0 0.75rem 1.25rem;
+        }
+
+        .small {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.15rem 0.45rem;
+            margin: 0.1rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            border: 1px solid #475569;
+            color: var(--muted);
+        }
+
+        /* Inputs & table */
+        input[type="text"] {
+            padding: 0.45rem 0.6rem;
+            border-radius: 0.5rem;
+            border: 1px solid #374151;
+            background: var(--panel-2);
+            color: #e5e7eb;
+            min-width: 0;
+        }
+
+        input[type="range"] {
+            width: 100%;
+        }
+
+        .score {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        button {
+            padding: 0.45rem 0.8rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--accent);
+            background: #0f172a;
+            color: #e5e7eb;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        button:hover {
+            background: #111827;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+            margin: 0.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.4rem;
+            font-size: 0.8rem;
+        }
+
+        th,
+        td {
+            padding: 0.35rem 0.25rem;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+            color: var(--muted);
+        }
+
+        th {
+            color: #7f8ea3;
+            font-weight: 500;
+        }
+
+        /* Panels for summaries */
+        .highlight {
+            background: var(--panel-2);
+            border: 1px solid var(--border-2);
+            padding: 0.75rem;
+            border-radius: 0.6rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        @media (min-width: 900px) {
+            .grid.two {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <h1>The Fifth Discipline: Learning Organization Check</h1>
-  <p>
-    Rate how well our organization practices each discipline (1 = low, 5 = strong).
-    Submit your results to see both your snapshot and our live group snapshot.
-  </p>
+    <header>
+        <h1>The Fifth Discipline – Class Guide & Live Diagnostic</h1>
+        <p class="lead">Read together → Discuss talking points → Take the diagnostic → Reflect on our group snapshot.
+        </p>
+    </header>
 
-  <div id="disciplines"></div>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+        <button class="tab-btn" role="tab" aria-selected="true" aria-controls="tab-overview"
+            id="tabbtn-overview">Overview</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-points" id="tabbtn-points">Talking
+            Points</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-diagnostic"
+            id="tabbtn-diagnostic">Diagnostic</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-group" id="tabbtn-group">Group
+            Snapshot</button>
+    </nav>
 
-  <div class="controls">
-    <input type="text" id="participantName" placeholder="Name/initials (optional)" />
-    <input type="text" id="sessionCode" placeholder="Session code (e.g., 'Class1')" />
-    <button id="submitBtn">Submit my results</button>
-    <button id="clearSessionBtn">Clear this session (admin)</button>
-  </div>
-  <div class="small">
-    Tip: Pick a short Session Code (e.g., your class name). Everyone enters the same code so the
-    Group Snapshot reflects just this group.
-  </div>
+    <main>
+        <!-- OVERVIEW -->
+        <section id="tab-overview" role="tabpanel" aria-labelledby="tabbtn-overview">
+            <div class="card">
+                <h2>Executive Summary</h2>
+                <p>
+                    Senge argues organizations gain durable advantage by becoming <em>learning organizations</em>—places
+                    where people continually
+                    expand their capacity to create desired results, question assumptions, share vision, and learn
+                    together. Most chronic
+                    problems are systemic: <strong>structure influences behavior</strong>. The central practice is
+                    <strong>Systems Thinking</strong>, which integrates
+                    four companion disciplines—Personal Mastery, Mental Models, Shared Vision, and Team Learning—into
+                    daily management. :contentReference[oaicite:1]{index=1}
+                </p>
+            </div>
 
-  <div id="summary"></div>
-  <div id="groupSummary"></div>
+            <div class="grid two">
+                <div class="card">
+                    <h3>The Five Disciplines</h3>
+                    <ul>
+                        <li><strong>Systems Thinking (5th)</strong> – See interrelationships & feedback, not isolated
+                            events; the integrator of all disciplines. :contentReference[oaicite:2]{index=2}</li>
+                        <li><strong>Personal Mastery</strong> – Clarify personal vision, face reality, hold “creative
+                            tension,” pursue lifelong learning. :contentReference[oaicite:3]{index=3}</li>
+                        <li><strong>Mental Models</strong> – Surface, test, and improve hidden assumptions via
+                            reflection & inquiry. :contentReference[oaicite:4]{index=4}</li>
+                        <li><strong>Shared Vision</strong> – Co-create a compelling future that turns compliance into
+                            commitment. :contentReference[oaicite:5]{index=5}</li>
+                        <li><strong>Team Learning</strong> – Dialogue + discussion → coordinated action and “operational
+                            trust.” :contentReference[oaicite:6]{index=6}</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>11 Laws of the Fifth Discipline</h3>
+                    <ol>
+                        <li>Today’s problems come from yesterday’s “solutions.”</li>
+                        <li>The harder you push, the harder the system pushes back.</li>
+                        <li>Behavior grows better before it grows worse.</li>
+                        <li>The easy way out usually leads back in.</li>
+                        <li>The cure can be worse than the disease.</li>
+                        <li>Faster is slower.</li>
+                        <li>Cause and effect are not closely related in time and space.</li>
+                        <li>Small changes → big results, but high-leverage points are least obvious.</li>
+                        <li>You can have your cake and eat it too—but not both at once.</li>
+                        <li>Dividing an elephant in half doesn’t make two small elephants.</li>
+                        <li>There is no blame. :contentReference[oaicite:7]{index=7}</li>
+                    </ol>
+                    <div class="small">Source: Soundview Executive Summary of <em>The Fifth Discipline</em> (2011).
+                        :contentReference[oaicite:8]{index=8}</div>
+                </div>
+            </div>
 
-  <footer>
-    Inspired by Peter Senge's <em>The Fifth Discipline</em>. For classroom discussion only.
-  </footer>
+            <div class="card highlight">
+                <strong>Why this matters for us:</strong> learning organizations reduce firefighting and blame, focus on
+                root causes, and build resilience
+                in complex environments—by improving how we learn as individuals, teams, and a whole system.
+                :contentReference[oaicite:9]{index=9}
+            </div>
+        </section>
 
-  <!-- Firebase + App Logic -->
-  <script type="module">
-    /************ Firebase Imports ************/
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-    import {
-      getFirestore,
-      collection,
-      addDoc,
-      onSnapshot,
-      query,
-      where,
-      serverTimestamp,
-      deleteDoc,
-      getDocs
-    } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+        <!-- TALKING POINTS -->
+        <section id="tab-points" role="tabpanel" aria-labelledby="tabbtn-points" hidden>
+            <div class="card">
+                <h2>5-Minute Talking Points</h2>
+                <ol>
+                    <li><strong>Hook (0:30)</strong> – Why do smart orgs repeat the same mistakes? Because of
+                        <em>learning disabilities</em> and unseen system structures. Solution: become a learning
+                        organization. :contentReference[oaicite:10]{index=10}</li>
+                    <li><strong>What is a Learning Organization? (0:45)</strong> – A place that nurtures new ways of
+                        thinking, collective aspiration, and learning at all levels.
+                        :contentReference[oaicite:11]{index=11}</li>
+                    <li><strong>The Five Disciplines (2:30)</strong> – Personal Mastery, Mental Models, Shared Vision,
+                        Team Learning, and Systems Thinking as the integrator. Include “creative tension,”
+                        reflection/inquiry, dialogue vs. discussion. :contentReference[oaicite:12]{index=12}</li>
+                    <li><strong>Key Laws of Systems Thinking (1:00)</strong> – “Today’s problems…”; “No blame”; “Small
+                        changes in right place…”; “Faster is slower.” Use 1–2 quick examples from your org.
+                        :contentReference[oaicite:13]{index=13}</li>
+                    <li><strong>Leader’s Role (0:45)</strong> – Leaders as <em>designers</em> of the ship: create
+                        structures, practices, and learning infrastructures that make reflection & collaboration
+                        routine. :contentReference[oaicite:14]{index=14}</li>
+                    <li><strong>Close (0:30)</strong> – Learning is the operating system. We’ll now take a quick
+                        diagnostic and then reflect on our Group Snapshot.</li>
+                </ol>
+            </div>
+        </section>
 
-    /************ TODO: Add your Firebase config here ************/
-    // In Firebase Console:
-    // 1. Create project
-    // 2. Add Web App
-    // 3. Copy config and paste below
-    const firebaseConfig = {
-      apiKey: "AIzaSyBnjVeGXmi3JZEelZBBMgjX-3M-LAWxMos",
-      authDomain: "learning-org-check.firebaseapp.com",
-      projectId: "learning-org-check",
-      storageBucket: "learning-org-check.firebasestorage.app",
-      messagingSenderId: "1057600219549",
-      appId: "1:1057600219549:web:151df7a9e0d375af1ca774"
-      // storageBucket, messagingSenderId, appId are optional but recommended; paste full snippet
-    };
+        <!-- DIAGNOSTIC -->
+        <section id="tab-diagnostic" role="tabpanel" aria-labelledby="tabbtn-diagnostic" hidden>
+            <div class="card">
+                <h2>Learning Organization Diagnostic</h2>
+                <p>Rate our organization on each discipline (1 = low, 5 = strong). Submit to add your result to the live
+                    Group Snapshot.</p>
+            </div>
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const RESPONSES_COLLECTION = "fifth_discipline_responses";
+            <div id="disciplines"></div>
 
-    /************ App Setup ************/
-    const disciplines = [
-      {
-        id: "personalMastery",
-        name: "Personal Mastery",
-        blurb: "People pursue growth, align actions with a clear vision, and face reality honestly."
-      },
-      {
-        id: "mentalModels",
-        name: "Mental Models",
-        blurb: "Assumptions are discussed, challenged, and updated—not treated as untouchable truths."
-      },
-      {
-        id: "sharedVision",
-        name: "Shared Vision",
-        blurb: "There is a compelling, co-created vision that people genuinely care about."
-      },
-      {
-        id: "teamLearning",
-        name: "Team Learning",
-        blurb: "Teams reflect, listen, and think together instead of defending positions."
-      },
-      {
-        id: "systemsThinking",
-        name: "Systems Thinking (5th)",
-        blurb: "Decisions consider patterns, feedback loops, and long-term effects—not just quick fixes."
-      }
-    ];
+            <div class="card">
+                <div class="controls">
+                    <input type="text" id="participantName" placeholder="Name/initials (optional)" />
+                    <input type="text" id="sessionCode" placeholder="Session code (e.g., 'OrgClass1')" />
+                    <button id="submitBtn">Submit my results</button>
+                </div>
+                <p class="small">Everyone must use the same Session Code to aggregate into the same Group Snapshot.</p>
+            </div>
 
-    const container = document.getElementById("disciplines");
-    const summaryEl = document.getElementById("summary");
-    const groupSummaryEl = document.getElementById("groupSummary");
-    const nameInput = document.getElementById("participantName");
-    const sessionInput = document.getElementById("sessionCode");
-    const submitBtn = document.getElementById("submitBtn");
-    const clearSessionBtn = document.getElementById("clearSessionBtn");
+            <div id="summary" class="card"></div>
+        </section>
 
-    // Build sliders UI
-    disciplines.forEach(d => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <div class="label-row">
-          <strong>${d.name}</strong>
-          <span class="score" id="${d.id}-score">3</span>
-        </div>
-        <p>${d.blurb}</p>
-        <input type="range" min="1" max="5" value="3" id="${d.id}-slider" />
-      `;
-      container.appendChild(card);
-    });
+        <!-- GROUP SNAPSHOT -->
+        <section id="tab-group" role="tabpanel" aria-labelledby="tabbtn-group" hidden>
+            <div class="card">
+                <h2>Group Snapshot (Live)</h2>
+                <p>Enter the same Session Code used during submission to view this group’s live averages.</p>
+                <div class="controls">
+                    <input type="text" id="sessionCodeView" placeholder="Session code (e.g., 'OrgClass1')" />
+                    <button id="listenBtn">Show/Refresh Group</button>
+                    <button id="clearSessionBtn"
+                        title="Deletes responses for the typed Session Code (admin only).">Clear this session</button>
+                </div>
+                <div id="groupSummary"></div>
+            </div>
+        </section>
+    </main>
 
-    /************ Helper Functions ************/
-    function getCurrentScores() {
-      const scores = {};
-      let total = 0;
-      disciplines.forEach(d => {
-        const v = Number(document.getElementById(`${d.id}-slider`).value);
-        scores[d.id] = v;
-        total += v;
-      });
-      const index = (total / (disciplines.length * 5)) * 100;
-      return { scores, index };
-    }
+    <!-- Firebase + App Logic -->
+    <script type="module">
+        /************ Firebase Imports ************/
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+        import {
+            getFirestore,
+            collection,
+            addDoc,
+            onSnapshot,
+            query,
+            where,
+            serverTimestamp,
+            deleteDoc,
+            getDocs
+        } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
 
-    function labelForIndex(index) {
-      if (index >= 80) return "Strong learning-organization tendencies.";
-      if (index >= 60) return "Good base; some disciplines need strengthening.";
-      if (index >= 40) return "Mixed; pockets of learning, but not yet systemic.";
-      return "At risk: learning is mostly ad hoc or blocked.";
-    }
+        /************ TODO: Paste your Firebase config ************/
+        const firebaseConfig = {
+            apiKey: "AIzaSyBnjVeGXmi3JZEelZBBMgjX-3M-LAWxMos",
+            authDomain: "learning-org-check.firebaseapp.com",
+            projectId: "learning-org-check",
+            storageBucket: "learning-org-check.firebasestorage.app",
+            messagingSenderId: "1057600219549",
+            appId: "1:1057600219549:web:151df7a9e0d375af1ca774"
+            // include the rest from your Firebase console snippet
+        };
 
-    function focusAreasFromScores(scores) {
-      const low = disciplines.filter(d => scores[d.id] <= 2).map(d => d.name);
-      return low.length
-        ? `<p><strong>Focus Areas (≤2):</strong> ${low.join(", ")}</p>`
-        : `<p><strong>Focus Areas:</strong> None scored very low — look for consistency and practice over time.</p>`;
-    }
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const RESPONSES_COLLECTION = "fifth_discipline_responses";
 
-    function updateIndividualSummary() {
-      const { scores, index } = getCurrentScores();
-      disciplines.forEach(d => {
-        document.getElementById(`${d.id}-score`).textContent = scores[d.id];
-      });
-      summaryEl.innerHTML = `
-        <h2>Your Snapshot</h2>
+        /************ Tabs (accessible) ************/
+        const tabs = [
+            { btn: document.getElementById("tabbtn-overview"), panel: document.getElementById("tab-overview") },
+            { btn: document.getElementById("tabbtn-points"), panel: document.getElementById("tab-points") },
+            { btn: document.getElementById("tabbtn-diagnostic"), panel: document.getElementById("tab-diagnostic") },
+            { btn: document.getElementById("tabbtn-group"), panel: document.getElementById("tab-group") },
+        ];
+        function activateTab(idx) {
+            tabs.forEach((t, i) => {
+                t.btn.setAttribute("aria-selected", i === idx ? "true" : "false");
+                if (i === idx) { t.panel.removeAttribute("hidden"); t.btn.focus(); }
+                else { t.panel.setAttribute("hidden", ""); }
+            });
+        }
+        tabs.forEach((t, i) => t.btn.addEventListener("click", () => activateTab(i)));
+        // Allow hash linking like #group
+        const hashIndex = { "#overview": 0, "#points": 1, "#diagnostic": 2, "#group": 3 };
+        if (hashIndex[location.hash]) activateTab(hashIndex[location.hash]);
+
+        /************ Diagnostic UI ************/
+        const disciplinesDef = [
+            { id: "personalMastery", name: "Personal Mastery", blurb: "People pursue growth, align actions with clear vision, and face reality honestly." },
+            { id: "mentalModels", name: "Mental Models", blurb: "Assumptions are surfaced, discussed, and updated—rather than treated as untouchable truths." },
+            { id: "sharedVision", name: "Shared Vision", blurb: "A compelling, co-created vision that people genuinely care about." },
+            { id: "teamLearning", name: "Team Learning", blurb: "Dialogue and discussion lead to coordinated action and ‘operational trust.’" },
+            { id: "systemsThinking", name: "Systems Thinking (5th)", blurb: "Decisions consider patterns, feedback loops, and long-term effects—not just quick fixes." },
+        ];
+
+        const container = document.getElementById("disciplines");
+        const summaryEl = document.getElementById("summary");
+        const nameInput = document.getElementById("participantName");
+        const sessionInputSubmit = document.getElementById("sessionCode");
+        const sessionInputView = document.getElementById("sessionCodeView");
+        const submitBtn = document.getElementById("submitBtn");
+        const listenBtn = document.getElementById("listenBtn");
+        const clearSessionBtn = document.getElementById("clearSessionBtn");
+        const groupSummaryEl = document.getElementById("groupSummary");
+
+        function buildSliders() {
+            container.innerHTML = "";
+            disciplinesDef.forEach(d => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `
+          <div class="label-row" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;font-size:0.9rem;">
+            <strong>${d.name}</strong>
+            <span class="score" id="${d.id}-score">3</span>
+          </div>
+          <p>${d.blurb}</p>
+          <input type="range" min="1" max="5" value="3" id="${d.id}-slider" />
+        `;
+                container.appendChild(card);
+            });
+            document.querySelectorAll('#disciplines input[type="range"]').forEach(s => s.addEventListener("input", updateIndividualSummary));
+        }
+
+        function getCurrentScores() {
+            const scores = {};
+            let total = 0;
+            disciplinesDef.forEach(d => {
+                const v = Number(document.getElementById(`${d.id}-slider`).value);
+                scores[d.id] = v; total += v;
+            });
+            const index = (total / (disciplinesDef.length * 5)) * 100;
+            return { scores, index };
+        }
+        function labelForIndex(index) {
+            if (index >= 80) return "Strong learning-organization tendencies.";
+            if (index >= 60) return "Good base; some disciplines need strengthening.";
+            if (index >= 40) return "Mixed; pockets of learning, but not yet systemic.";
+            return "At risk: learning is mostly ad hoc or blocked.";
+        }
+        function focusAreas(scores) {
+            const lows = disciplinesDef.filter(d => scores[d.id] <= 2).map(d => d.name);
+            return lows.length
+                ? `<p><strong>Focus Areas (≤2):</strong> ${lows.join(", ")}</p>`
+                : `<p><strong>Focus Areas:</strong> None scored very low — look for consistency over time.</p>`;
+        }
+        function updateIndividualSummary() {
+            const { scores, index } = getCurrentScores();
+            disciplinesDef.forEach(d => {
+                document.getElementById(`${d.id}-score`).textContent = scores[d.id];
+            });
+            summaryEl.innerHTML = `
+        <h3>Your Snapshot</h3>
         <p><strong>Your Learning Organization Index:</strong> ${index.toFixed(0)}%</p>
         <p>${labelForIndex(index)}</p>
-        ${focusAreasFromScores(scores)}
+        ${focusAreas(scores)}
         <div>
           <span class="tag">Root causes, not symptoms</span>
           <span class="tag">Shared vision</span>
@@ -282,168 +471,100 @@
           <span class="tag">Team learning</span>
         </div>
       `;
-    }
+        }
 
-    function renderGroupSummary(responses) {
-      if (!responses.length) {
-        groupSummaryEl.innerHTML = `
-          <h2>Group Snapshot</h2>
-          <p>No responses for this session code yet.</p>
-        `;
-        return;
-      }
+        /************ Firestore: submit & listen ************/
+        async function submitResponse() {
+            const sessionCode = sessionInputSubmit.value.trim();
+            if (!sessionCode) { alert("Please enter a Session Code before submitting."); return; }
+            const name = nameInput.value.trim() || "Anonymous";
+            const { scores, index } = getCurrentScores();
+            try {
+                await addDoc(collection(db, RESPONSES_COLLECTION), {
+                    name, scores, index, sessionCode, createdAt: serverTimestamp()
+                });
+                alert("Thanks! Your result is in the Group Snapshot.");
+                sessionInputView.value = sessionCode; // so Group tab can pick it up
+            } catch (e) {
+                console.error(e);
+                alert("Error submitting. Check console or try again.");
+            }
+        }
 
-      const n = responses.length;
-      const sumScores = {};
-      disciplines.forEach(d => (sumScores[d.id] = 0));
-      let totalIndex = 0;
+        let unsubscribe = null;
+        function renderGroupSummary(responses) {
+            if (!responses.length) {
+                groupSummaryEl.innerHTML = `<div class="card"><p>No responses for this Session Code yet.</p></div>`;
+                return;
+            }
+            const n = responses.length;
+            const sums = {}; disciplinesDef.forEach(d => sums[d.id] = 0);
+            let totalIndex = 0;
+            responses.forEach(r => {
+                disciplinesDef.forEach(d => sums[d.id] += (r.scores?.[d.id] || 0));
+                totalIndex += (r.index || 0);
+            });
+            const avgIndex = totalIndex / n;
+            const avgs = {}; disciplinesDef.forEach(d => avgs[d.id] = sums[d.id] / n);
+            const sorted = disciplinesDef.map(d => ({ ...d, avg: avgs[d.id] })).sort((a, b) => a.avg - b.avg);
+            const weakest = sorted[0];
+            const weakCluster = sorted.filter(x => x.avg <= weakest.avg + 0.25);
+            const weakText = weakCluster.map(w => `${w.name} (${w.avg.toFixed(2)})`).join(", ");
 
-      responses.forEach(r => {
-        disciplines.forEach(d => {
-          sumScores[d.id] += r.scores[d.id];
-        });
-        totalIndex += r.index;
-      });
-
-      const avgIndex = totalIndex / n;
-      const avgScores = {};
-      disciplines.forEach(d => {
-        avgScores[d.id] = sumScores[d.id] / n;
-      });
-
-      const sorted = disciplines
-        .map(d => ({ id: d.id, name: d.name, avg: avgScores[d.id] }))
-        .sort((a, b) => a.avg - b.avg);
-
-      const weakest = sorted[0];
-      const weakCluster = sorted.filter(x => x.avg <= weakest.avg + 0.25);
-      const weakText = weakCluster
-        .map(w => `${w.name} (${w.avg.toFixed(2)})`)
-        .join(", ");
-
-      groupSummaryEl.innerHTML = `
-        <h2>Group Snapshot</h2>
-        <p><strong>Participants in this session:</strong> ${n}</p>
-        <p><strong>Average Learning Organization Index:</strong> ${avgIndex.toFixed(0)}%</p>
-        <p>${labelForIndex(avgIndex)}</p>
-        <p><strong>Average by Discipline (1–5):</strong></p>
-        <table>
-          <thead>
-            <tr>
-              <th>Discipline</th>
-              <th>Avg Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${disciplines
-              .map(
-                d => `
-              <tr>
-                <td>${d.name}</td>
-                <td>${avgScores[d.id].toFixed(2)}</td>
-              </tr>`
-              )
-              .join("")}
-          </tbody>
-        </table>
-        <p><strong>Collective Weak Spot(s):</strong> ${weakText}</p>
-        <p class="small">
-          Use this to discuss where our organization behaves like a true learning organization
-          and where systemic barriers still exist (e.g., mental models, shared vision, or systems thinking).
-        </p>
+            groupSummaryEl.innerHTML = `
+        <div class="card">
+          <p><strong>Participants:</strong> ${n}</p>
+          <p><strong>Average Learning Organization Index:</strong> ${avgIndex.toFixed(0)}%</p>
+          <p>${labelForIndex(avgIndex)}</p>
+          <p><strong>Average by Discipline (1–5):</strong></p>
+          <table>
+            <thead><tr><th>Discipline</th><th>Avg</th></tr></thead>
+            <tbody>
+              ${disciplinesDef.map(d => `<tr><td>${d.name}</td><td>${avgs[d.id].toFixed(2)}</td></tr>`).join("")}
+            </tbody>
+          </table>
+          <p><strong>Collective Weak Spot(s):</strong> ${weakText}</p>
+          <p class="small">Discuss: Where are we strong? Where do structures (not people) hold us back? What small high-leverage changes could shift the system?</p>
+        </div>
       `;
-    }
+        }
+        function startListening() {
+            const code = sessionInputView.value.trim();
+            if (!code) { alert("Enter a Session Code to view the Group Snapshot."); return; }
+            if (unsubscribe) unsubscribe();
+            const qRef = query(collection(db, RESPONSES_COLLECTION), where("sessionCode", "==", code));
+            unsubscribe = onSnapshot(qRef, snap => {
+                renderGroupSummary(snap.docs.map(d => d.data()));
+            }, err => {
+                console.error(err);
+                groupSummaryEl.innerHTML = `<div class="card"><p>Error loading group data.</p></div>`;
+            });
+        }
+        async function clearSession() {
+            const code = sessionInputView.value.trim();
+            if (!code) { alert("Enter the Session Code to clear."); return; }
+            if (!confirm(`Delete all responses for "${code}"?`)) return;
+            const qRef = query(collection(db, RESPONSES_COLLECTION), where("sessionCode", "==", code));
+            const snap = await getDocs(qRef);
+            await Promise.all(snap.docs.map(doc => deleteDoc(doc.ref)));
+            alert("Session cleared.");
+        }
 
-    /************ Firestore Real-time Listener ************/
-    let unsubscribe = null;
+        /************ Wire events & init ************/
+        buildSliders();
+        updateIndividualSummary();
 
-    function startSessionListener() {
-      if (unsubscribe) {
-        unsubscribe();
-      }
+        submitBtn.addEventListener("click", submitResponse);
+        listenBtn.addEventListener("click", startListening);
+        clearSessionBtn.addEventListener("click", clearSession);
 
-      const sessionCode = sessionInput.value.trim();
-      if (!sessionCode) {
-        groupSummaryEl.innerHTML = `
-          <h2>Group Snapshot</h2>
-          <p>Enter a Session Code so we can group results (e.g., "MBA-101").</p>
-        `;
-        return;
-      }
-
-      const colRef = collection(db, RESPONSES_COLLECTION);
-      const qRef = query(colRef, where("sessionCode", "==", sessionCode));
-
-      unsubscribe = onSnapshot(qRef, (snapshot) => {
-        const responses = snapshot.docs.map(doc => doc.data());
-        renderGroupSummary(responses);
-      }, (error) => {
-        console.error("Error listening to group data:", error);
-        groupSummaryEl.innerHTML = `
-          <h2>Group Snapshot</h2>
-          <p>Error loading group data. Check console/logs.</p>
-        `;
-      });
-    }
-
-    /************ Events ************/
-    document.querySelectorAll('input[type="range"]').forEach(slider => {
-      slider.addEventListener("input", updateIndividualSummary);
-    });
-
-    // When session code changes, re-bind listener
-    sessionInput.addEventListener("change", startSessionListener);
-    sessionInput.addEventListener("blur", startSessionListener);
-
-    submitBtn.addEventListener("click", async () => {
-      const { scores, index } = getCurrentScores();
-      const name = nameInput.value.trim() || "Anonymous";
-      const sessionCode = sessionInput.value.trim();
-
-      if (!sessionCode) {
-        alert("Please enter a Session Code (agreed code for your class) before submitting.");
-        return;
-      }
-
-      try {
-        await addDoc(collection(db, RESPONSES_COLLECTION), {
-          name,
-          scores,
-          index,
-          sessionCode,
-          createdAt: serverTimestamp()
-        });
-        alert("Thanks! Your results are included in the group snapshot.");
-      } catch (err) {
-        console.error("Error submitting response:", err);
-        alert("Error submitting. Please try again or check console.");
-      }
-    });
-
-    clearSessionBtn.addEventListener("click", async () => {
-      const sessionCode = sessionInput.value.trim();
-      if (!sessionCode) {
-        alert("Enter the Session Code you want to clear, then click this.");
-        return;
-      }
-      if (!confirm(`Delete all responses for session "${sessionCode}" from Firestore?`)) return;
-
-      try {
-        const colRef = collection(db, RESPONSES_COLLECTION);
-        const qRef = query(colRef, where("sessionCode", "==", sessionCode));
-        const snap = await getDocs(qRef);
-        const deletions = snap.docs.map(doc => deleteDoc(doc.ref));
-        await Promise.all(deletions);
-        alert("Session cleared.");
-      } catch (err) {
-        console.error("Error clearing session:", err);
-        alert("Error clearing session. Check console.");
-      }
-    });
-
-    // Initial render
-    updateIndividualSummary();
-    // Note: group summary starts once a Session Code is set.
-  </script>
+        // convenience: if a hash contains a session like #group:OrgClass1
+        if (location.hash.startsWith("#group:")) {
+            activateTab(3);
+            sessionInputView.value = location.hash.split(":")[1] || "";
+            if (sessionInputView.value) startListening();
+        }
+    </script>
 </body>
+
 </html>
