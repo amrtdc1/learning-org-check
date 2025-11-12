@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Presenter Notes — The Fifth Discipline</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <!-- iOS add-to-home full-screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Presenter Notes" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --muted: #a3b2c7;
+      --text: #e5e7eb;
+      --accent: #38bdf8;
+      --border: #243244;
+      --card: #0b1220;
+      --shadow: 0 6px 24px rgba(0,0,0,.35);
+      --fs: 18px; /* base font size (tap A+/A- to adjust) */
+      --lh: 1.55;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-size: var(--fs); line-height: var(--lh); -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 88px 16px 40px; }
+    /* Sticky header / controls */
+    .topbar {
+      position: fixed; inset: 0 0 auto 0; height: 72px; display: grid; grid-template-columns: 1fr auto;
+      align-items: center; gap: 10px; padding: 12px 12px env(safe-area-inset-right) 12px env(safe-area-inset-left);
+      background: linear-gradient(180deg, rgba(15,23,42,.95), rgba(15,23,42,.85));
+      border-bottom: 1px solid var(--border); backdrop-filter: blur(6px); z-index: 10;
+    }
+    .title { font-weight: 700; font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .controls { display: flex; gap: 8px; align-items: center; }
+    .btn {
+      border: 1px solid var(--accent); color: var(--text); background: #0f172a;
+      padding: 8px 10px; border-radius: 10px; font-weight: 600; font-size: 14px;
+      box-shadow: var(--shadow);
+    }
+    .btn:active { transform: translateY(1px); }
+    .pill {
+      border: 1px solid var(--border); background: var(--panel); color: var(--muted);
+      padding: 6px 10px; border-radius: 999px; font-size: 12px;
+    }
+    /* Quick jump row */
+    .jumps {
+      display: flex; gap: 8px; overflow-x: auto; padding: 8px 0 0; margin-top: -8px;
+    }
+    .jump {
+      border: 1px solid var(--border); background: var(--card); color: var(--muted);
+      padding: 8px 10px; border-radius: 10px; white-space: nowrap; font-size: 13px;
+    }
+    /* Cards / sections */
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 14px 14px; margin: 12px 0; box-shadow: var(--shadow);
+    }
+    h1, h2, h3 { margin: 0 0 6px; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 18px; color: #fff; }
+    h3 { font-size: 16px; color: #d7e0ee; }
+    p { margin: 6px 0 10px; color: var(--text); }
+    .muted { color: var(--muted); }
+    ul { margin: 6px 0 8px 20px; padding: 0; }
+    li { margin: 6px 0; }
+    .quote { border-left: 3px solid var(--accent); padding-left: 10px; }
+    .time { font-weight: 700; color: var(--accent); margin-right: 6px; }
+    .divider { height: 1px; background: var(--border); margin: 10px 0; opacity: .75; }
+    .foot { margin-top: 10px; font-size: 12px; color: var(--muted); text-align: center; }
+    /* Big tap targets for headings */
+    .sec { scroll-margin-top: 88px; }
+    /* Accessibility helpers */
+    @media (min-width: 820px) {
+      :root { --fs: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="title">Presenter Notes — The Fifth Discipline</div>
+    <div class="controls">
+      <span class="pill" id="timer">00:00</span>
+      <button class="btn" id="startBtn">Start</button>
+      <button class="btn" id="resetBtn" aria-label="Reset timer">↺</button>
+      <button class="btn" id="fsMinus" aria-label="Smaller text">A−</button>
+      <button class="btn" id="fsPlus" aria-label="Larger text">A+</button>
+    </div>
+    <div class="jumps" aria-label="Jump to section">
+      <a class="jump" href="#hook">Hook</a>
+      <a class="jump" href="#overview">Overview</a>
+      <a class="jump" href="#disciplines">Five Disciplines</a>
+      <a class="jump" href="#laws">Key Laws</a>
+      <a class="jump" href="#leader">Leadership</a>
+      <a class="jump" href="#diagnostic">Diagnostic</a>
+      <a class="jump" href="#close">Closing</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="hook" class="sec card">
+      <h2>Opening / Hook <span class="time">(~0:30)</span></h2>
+      <p class="quote">“Why do smart organizations keep making the same mistakes?”</p>
+      <p>
+        Senge says we suffer from <em>organizational learning disabilities</em>: quick fixes, blame, and not seeing
+        the system we’re part of. The path forward is becoming a <strong>Learning Organization</strong> that learns
+        faster than the world changes.
+      </p>
+    </section>
+
+    <section id="overview" class="sec card">
+      <h2>Overview: What’s a Learning Organization? <span class="time">(~0:45)</span></h2>
+      <p>
+        A place where people continually expand their ability to create the results they truly want—by
+        growing, questioning assumptions, sharing a vision, and learning together. Core idea:
+        <strong>structure influences behavior</strong>. For different results, redesign the system—don’t just fix people.
+      </p>
+      <div class="divider"></div>
+      <p class="muted">We’ll cover the five disciplines briefly, then use a 1–5 diagnostic and view our live group snapshot.</p>
+    </section>
+
+    <section id="disciplines" class="sec card">
+      <h2>The Five Disciplines <span class="time">(~2:30)</span></h2>
+
+      <h3>1) Personal Mastery</h3>
+      <p>
+        Individuals clarify what truly matters and face current reality honestly. The gap creates
+        <em>creative tension</em>—fuel for learning and improvement.
+      </p>
+
+      <h3>2) Mental Models</h3>
+      <p>
+        Hidden assumptions shape how we act. We surface, test, and improve them through reflection and
+        inquiry—so decisions get better.
+      </p>
+
+      <h3>3) Shared Vision</h3>
+      <p>
+        Not a memo—co-created. Turns compliance into commitment. Personal visions feed a genuine
+        collective vision people want to pursue.
+      </p>
+
+      <h3>4) Team Learning</h3>
+      <p>
+        Dialogue (listening to understand) + Discussion (decide and act). Done well, teams build
+        “operational trust” and think better together than alone. Fosters coordinated, innovative action.
+      </p>
+
+      <h3>5) Systems Thinking (the Fifth)</h3>
+      <p>
+        The integrator. Helps us see interdependencies, feedback loops, and long-term effects—so we act
+        on <em>root causes</em>, not symptoms. Shifts us from reacting to creating.
+      </p>
+    </section>
+
+    <section id="laws" class="sec card">
+      <h2>Key “Laws” of Systems Thinking <span class="time">(~0:45)</span></h2>
+      <ul>
+        <li>Today’s problems come from yesterday’s “solutions.”</li>
+        <li>The harder you push, the harder the system pushes back.</li>
+        <li>Cause &amp; effect aren’t close in time or space.</li>
+        <li>Small changes in the right place can have big impact.</li>
+        <li>There is no blame—we’re all part of the same system.</li>
+      </ul>
+      <p class="muted">Use 1 quick example from your org if you have time (e.g., a quick fix that created side effects).</p>
+    </section>
+
+    <section id="leader" class="sec card">
+      <h2>Leadership &amp; Practice <span class="time">(~0:45)</span></h2>
+      <p>
+        Leaders aren’t just captains steering the ship; they’re <strong>designers of the ship</strong>. Their real work:
+        craft systems, culture, and simple learning infrastructures so reflection and collaboration happen
+        every day.
+        <ul>
+        <li>Integrate learning with daily work</li>
+        <li>Create practice fields for experimentation</li>
+        <li>Build learning communities and infrastructures</li>
+      </ul>
+      </p>
+      <p class="muted">Model openness, curiosity, and a bias for seeing structures—not villains.</p>
+    </section>
+
+    <section id="takeaway" class="sec card">
+      <h2>Takeaway<span class="time">(~0:30)</span></h2>
+      <p>
+        Learning organizations thrive by:
+        <ul>
+        <li>Seeing patterns, not snapshots</li>
+        <li>Encouraging openness and reflection</li>
+        <li>Aligning personal and collective aspirations</li>
+        <li>Fostering teamwork and shared understanding</li>
+        <li>Designing systems for long-term success</li>
+      </ul>
+      </p>
+    </section>
+
+    <section id="diagnostic" class="sec card">
+      <h2>Transition to Diagnostic (Use Session Code 'ALP') <span class="time">(~1:00)</span></h2>
+      <p>
+        “Let’s rate how strongly we practice each discipline—1 to 5. Submit your results; our
+        <strong>Group Snapshot</strong> will update live. We’re looking for patterns and leverage points, not blame.”
+      </p>
+      <ul class="muted">
+        <li>Explain sliders &amp; “Session Code” (ensure everyone uses the same one).</li>
+        <li>Invite brief reactions after the Group Snapshot appears.</li>
+      </ul>
+    </section>
+
+    <section id="close" class="sec card">
+      <h2>Closing <span class="time">(~0:20)</span></h2>
+      <p>
+        “Learning isn’t a department—it’s our operating system. When we see the system, we stop
+        firefighting and start creating the future we want.”
+      </p>
+    </section>
+
+    <div class="foot muted">
+      Source: Soundview Executive Summary of <em>The Fifth Discipline</em> (2011). These notes track the app’s Overview & Talking Points.
+    </div>
+  </main>
+
+  <script>
+    // --- Timer (simple, offline) ---
+    let t0 = null, running = false, rafId = null;
+    const timerEl = document.getElementById('timer');
+    const startBtn = document.getElementById('startBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function fmt(ms){
+      const s = Math.floor(ms/1000);
+      const mm = String(Math.floor(s/60)).padStart(2,'0');
+      const ss = String(s%60).padStart(2,'0');
+      return `${mm}:${ss}`;
+    }
+    function tick(ts){
+      if(!running){ return; }
+      const elapsed = ts - t0;
+      timerEl.textContent = fmt(elapsed);
+      // Nudge color as you approach 5:00
+      if (elapsed >= 4*60*1000 && elapsed < 5*60*1000) timerEl.style.color = '#fbbf24'; // amber
+      else if (elapsed >= 5*60*1000) timerEl.style.color = '#f87171'; // red
+      else timerEl.style.color = '#38bdf8'; // accent
+      rafId = requestAnimationFrame(tick);
+    }
+    startBtn.addEventListener('click', () => {
+      if(!running){
+        running = true;
+        t0 = performance.now();
+        rafId = requestAnimationFrame(tick);
+        startBtn.textContent = 'Pause';
+      } else {
+        running = false;
+        cancelAnimationFrame(rafId);
+        startBtn.textContent = 'Resume';
+      }
+    });
+    resetBtn.addEventListener('click', () => {
+      running = false; cancelAnimationFrame(rafId);
+      timerEl.textContent = '00:00';
+      timerEl.style.color = '#38bdf8';
+      startBtn.textContent = 'Start';
+    });
+
+    // --- Font size adjust (persists per device with localStorage) ---
+    const fsPlus = document.getElementById('fsPlus');
+    const fsMinus = document.getElementById('fsMinus');
+    const KEY = 'presenter_notes_fontsize';
+    function setFS(px){ document.documentElement.style.setProperty('--fs', px + 'px'); localStorage.setItem(KEY, px); }
+    const saved = Number(localStorage.getItem(KEY));
+    if (saved && saved >= 16 && saved <= 26) setFS(saved);
+    fsPlus.addEventListener('click', () => {
+      const curr = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--fs'));
+      setFS(Math.min(curr + 1, 26));
+    });
+    fsMinus.addEventListener('click', () => {
+      const curr = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--fs'));
+      setFS(Math.max(curr - 1, 16));
+    });
+  </script>
+</body>
+</html>
