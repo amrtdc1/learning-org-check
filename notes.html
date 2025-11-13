@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Presenter Notes — The Fifth Discipline</title>
+  <title>Presenter Notes — The Fifth Discipline (Expanded)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0f172a" />
   <!-- iOS add-to-home full-screen -->
@@ -75,17 +75,13 @@
     .time { font-weight: 700; color: var(--accent); margin-right: 6px; }
     .divider { height: 1px; background: var(--border); margin: 10px 0; opacity: .75; }
     .foot { margin-top: 10px; font-size: 12px; color: var(--muted); text-align: center; }
-    /* Big tap targets for headings */
     .sec { scroll-margin-top: 88px; }
-    /* Accessibility helpers */
-    @media (min-width: 820px) {
-      :root { --fs: 20px; }
-    }
+    @media (min-width: 820px) { :root { --fs: 20px; } }
   </style>
 </head>
 <body>
   <header class="topbar">
-    <div class="title">Presenter Notes — The Fifth Discipline</div>
+    <div class="title">Presenter Notes — The Fifth Discipline (Expanded)</div>
     <div class="controls">
       <span class="pill" id="timer">00:00</span>
       <button class="btn" id="startBtn">Start</button>
@@ -94,135 +90,198 @@
       <button class="btn" id="fsPlus" aria-label="Larger text">A+</button>
     </div>
     <div class="jumps" aria-label="Jump to section">
-      <a class="jump" href="#hook">Hook</a>
-      <a class="jump" href="#overview">Overview</a>
+      <a class="jump" href="#intro">Introduction</a>
       <a class="jump" href="#disciplines">Five Disciplines</a>
-      <a class="jump" href="#laws">Key Laws</a>
-      <a class="jump" href="#leader">Leadership</a>
+      <a class="jump" href="#disabilities">Learning Disabilities</a>
+      <a class="jump" href="#laws">Laws & Systems Concepts</a>
+      <a class="jump" href="#practice">Reflections from Practice</a>
       <a class="jump" href="#diagnostic">Diagnostic</a>
       <a class="jump" href="#close">Closing</a>
     </div>
   </header>
 
   <main class="wrap">
-    <section id="hook" class="sec card">
-      <h2>Opening / Hook <span class="time">(~0:30)</span></h2>
-      <p class="quote">“Why do smart organizations keep making the same mistakes?”</p>
-      <p>
-        Senge says we suffer from <em>organizational learning disabilities</em>: quick fixes, blame, and not seeing
-        the system we’re part of. The path forward is becoming a <strong>Learning Organization</strong> that learns
-        faster than the world changes.
-      </p>
+    <!-- INTRO -->
+    <section id="intro" class="sec card">
+      <h2>Introduction <span class="time">(~1:00)</span></h2>
+      <ul>
+        <li><strong>Core purpose:</strong> build a <em>learning organization</em>—a place where people continually expand capacity to create desired results together.</li>
+        <li><strong>Real issue:</strong> we battle symptoms; Senge urges us to look for <em>systemic structures</em> and feedback that create recurring problems.</li>
+        <li><strong>Mindset shift:</strong> from reacting to events → recognizing patterns → redesigning the system (structures, policies, norms).</li>
+        <li><strong>Why it matters:</strong> faster adaptation, fewer “fix-and-fail” cycles, and healthier collaboration across functions.</li>
+      </ul>
     </section>
 
-    <section id="overview" class="sec card">
-      <h2>Overview: What’s a Learning Organization? <span class="time">(~0:45)</span></h2>
-      <p>
-        A place where people continually expand their ability to create the results they truly want—by
-        growing, questioning assumptions, sharing a vision, and learning together. Core idea:
-        <strong>structure influences behavior</strong>. For different results, redesign the system—don’t just fix people.
-      </p>
-      <div class="divider"></div>
-      <p class="muted">We’ll cover the five disciplines briefly, then use a 1–5 diagnostic and view our live group snapshot.</p>
-    </section>
-
+    <!-- FIVE DISCIPLINES -->
     <section id="disciplines" class="sec card">
-      <h2>The Five Disciplines <span class="time">(~2:30)</span></h2>
+      <h2>The Five Core Disciplines: Building the Learning Organization <span class="time">(~5:30)</span></h2>
 
       <h3>1) Personal Mastery</h3>
-      <p>
-        Individuals clarify what truly matters and face current reality honestly. The gap creates
-        <em>creative tension</em>—fuel for learning and improvement.
-      </p>
+      <ul>
+        <li><strong>Definition:</strong> lifelong learning; clarify personal vision and see current reality objectively.</li>
+        <li><strong>Creative tension:</strong> the gap between vision and reality generates energy for improvement (not stress to be avoided).</li>
+        <li><strong>Practice:</strong> cultivate self-awareness, patience, and discipline to align behavior with values.</li>
+        <li><strong>Impact:</strong> people act from choice and responsibility, not compliance or fear.</li>
+      </ul>
 
       <h3>2) Mental Models</h3>
-      <p>
-        Hidden assumptions shape how we act. We surface, test, and improve them through reflection and
-        inquiry—so decisions get better.
-      </p>
+      <ul>
+        <li><strong>Definition:</strong> the often invisible assumptions and stories that shape how we interpret events and act.</li>
+        <li><strong>Practice:</strong> surface, test, and refine assumptions through reflection and inquiry (e.g., “What might we be assuming?”).</li>
+        <li><strong>Team habit:</strong> normalize respectful challenge; separate data from interpretation.</li>
+        <li><strong>Impact:</strong> better decisions, less defensiveness, more shared understanding.</li>
+      </ul>
 
       <h3>3) Shared Vision</h3>
-      <p>
-        Not a memo—co-created. Turns compliance into commitment. Personal visions feed a genuine
-        collective vision people want to pursue.
-      </p>
+      <ul>
+        <li><strong>Definition:</strong> a co-created picture of the future people genuinely want, not a top-down slogan.</li>
+        <li><strong>Practice:</strong> connect organizational goals to personal aspirations; invite contribution and critique.</li>
+        <li><strong>Signals:</strong> language shifts from “I have to” → “I want to”; energy and initiative rise.</li>
+        <li><strong>Impact:</strong> commitment replaces compliance; resilience through change improves.</li>
+      </ul>
 
       <h3>4) Team Learning</h3>
-      <p>
-        Dialogue (listening to understand) + Discussion (decide and act). Done well, teams build
-        “operational trust” and think better together than alone. Fosters coordinated, innovative action.
-      </p>
+      <ul>
+        <li><strong>Definition:</strong> teams thinking together—balancing <em>dialogue</em> (explore/understand) with <em>discussion</em> (decide/act).</li>
+        <li><strong>Practice:</strong> listening to understand; speaking plainly; making reasoning visible; “operational trust.”</li>
+        <li><strong>Structures:</strong> retrospectives, after-action reviews, practice fields for experimentation.</li>
+        <li><strong>Impact:</strong> coordinated action; innovation that outpaces siloed efforts.</li>
+      </ul>
 
       <h3>5) Systems Thinking (the Fifth)</h3>
-      <p>
-        The integrator. Helps us see interdependencies, feedback loops, and long-term effects—so we act
-        on <em>root causes</em>, not symptoms. Shifts us from reacting to creating.
-      </p>
+      <ul>
+        <li><strong>Definition:</strong> the integrative discipline—see interdependencies, feedback loops, and delays; focus on <em>root causes</em>.</li>
+        <li><strong>Shift of mind:</strong> from linear cause→effect to circular causality and structure-driven behavior.</li>
+        <li><strong>Tools:</strong> causal loop diagrams; system archetypes (e.g., Limits to Growth, Shifting the Burden, Fixes that Fail).</li>
+        <li><strong>Impact:</strong> smarter leverage points, fewer unintended consequences, sustained performance.</li>
+      </ul>
     </section>
 
+    <!-- LEARNING DISABILITIES -->
+    <section id="disabilities" class="sec card">
+      <h2>The Seven Learning Disabilities <span class="time">(~2:00)</span></h2>
+      <ul>
+        <li><strong>1. “I am my position”</strong> — role myopia; people optimize jobs, not the whole. <em>Counters:</em> systems thinking, shared vision.</li>
+        <li><strong>2. “The enemy is out there”</strong> — externalizing blame; we miss our contribution to results. <em>Counters:</em> mental models, personal mastery.</li>
+        <li><strong>3. The illusion of taking charge</strong> — reactive “solutions” to symptoms look bold but don’t change structure. <em>Counters:</em> systems thinking.</li>
+        <li><strong>4. The fixation on events</strong> — headline chasing; no attention to patterns/structures. <em>Counters:</em> shift of mind, team learning.</li>
+        <li><strong>5. The parable of the boiled frog</strong> — gradual degradation is ignored. <em>Counters:</em> measurement over time, feedback awareness.</li>
+        <li><strong>6. The delusion of learning from experience</strong> — consequences are delayed/distant; we don’t see them. <em>Counters:</em> simulations, practice fields.</li>
+        <li><strong>7. The myth of the management team</strong> — groupthink & politics masquerade as alignment. <em>Counters:</em> dialogue, inquiry, psychological safety.</li>
+      </ul>
+    </section>
+
+    <!-- LAWS & SYSTEMS CONCEPTS -->
     <section id="laws" class="sec card">
-      <h2>Key “Laws” of Systems Thinking <span class="time">(~0:45)</span></h2>
+      <h2>Laws of the Fifth Discipline & Key Systems Concepts <span class="time">(~2:00)</span></h2>
+
+      <h3>Laws (selected highlights)</h3>
       <ul>
         <li>Today’s problems come from yesterday’s “solutions.”</li>
         <li>The harder you push, the harder the system pushes back.</li>
-        <li>Cause &amp; effect aren’t close in time or space.</li>
-        <li>Small changes in the right place can have big impact.</li>
-        <li>There is no blame—we’re all part of the same system.</li>
+        <li>Behavior grows better before it grows worse.</li>
+        <li>Faster is slower.</li>
+        <li>Cause & effect aren’t close in time or space.</li>
+        <li>Small changes at the right leverage point → big results.</li>
+        <li>There is no blame—we’re part of the same system.</li>
       </ul>
-      <p class="muted">Use 1 quick example from your org if you have time (e.g., a quick fix that created side effects).</p>
+
+      <h3>A Shift of Mind</h3>
+      <ul>
+        <li>From events → patterns → systemic structures; from blame → responsibility.</li>
+        <li>See ourselves as both <em>shaped by</em> and <em>shaping</em> the systems we inhabit.</li>
+        <li>Generative learning: creating the future we want vs. adapting to the one we get.</li>
+      </ul>
+
+      <h3>Reinforcing & Balancing Feedback + Delays</h3>
+      <ul>
+        <li><strong>Reinforcing loops (R):</strong> amplify change (growth or decline).</li>
+        <li><strong>Balancing loops (B):</strong> seek stability/goal; can create resistance to change.</li>
+        <li><strong>Delays:</strong> obscure cause/effect → overshoot, oscillation, unintended consequences.</li>
+      </ul>
+
+      <h3>Identifying Patterns That Control Events</h3>
+      <ul>
+        <li><strong>Limits to Growth:</strong> R growth meets a B constraint → plateau/decline.</li>
+        <li><strong>Shifting the Burden:</strong> symptomatic fixes displace fundamental solutions.</li>
+        <li><strong>Fixes that Fail:</strong> quick fix creates side effects that worsen the problem.</li>
+        <li><strong>Success to the Successful / Tragedy of the Commons:</strong> structural advantages or shared-resource depletion.</li>
+      </ul>
+
+      <h3>Self-Limiting or Self-Sustaining Growth</h3>
+      <ul>
+        <li>Diagnose constraints (capacity, policy, mindset) and act at the constraint, not the symptom.</li>
+        <li>Invest in capabilities that reinforce virtuous cycles (e.g., skills → quality → trust → autonomy → more learning).</li>
+      </ul>
     </section>
 
-    <section id="leader" class="sec card">
-      <h2>Leadership &amp; Practice <span class="time">(~0:45)</span></h2>
-      <p>
-        Leaders aren’t just captains steering the ship; they’re <strong>designers of the ship</strong>. Their real work:
-        craft systems, culture, and simple learning infrastructures so reflection and collaboration happen
-        every day.
-        <ul>
-        <li>Integrate learning with daily work</li>
-        <li>Create practice fields for experimentation</li>
-        <li>Build learning communities and infrastructures</li>
+    <!-- REFLECTIONS FROM PRACTICE -->
+    <section id="practice" class="sec card">
+      <h2>Reflections from Practice <span class="time">(~1:30)</span></h2>
+
+      <h3>Foundations</h3>
+      <ul>
+        <li>Learning organizations grow from disciplined practice, not slogans or workshops.</li>
+        <li>Embed learning into daily work: reflection, feedback, simple visualizations of systems.</li>
       </ul>
-      </p>
-      <p class="muted">Model openness, curiosity, and a bias for seeing structures—not villains.</p>
+
+      <h3>Impetus</h3>
+      <ul>
+        <li>Competitive and societal pressures demand adaptability; learning becomes a strategic necessity.</li>
+        <li>Crises often catalyze the will to change—leverage them to redesign structures, not just patch problems.</li>
+      </ul>
+
+      <h3>Eight Strategies (field-tested)</h3>
+      <ul>
+        <li>1) <strong>Integrate learning with work:</strong> continuous reflection & after-action reviews.</li>
+        <li>2) <strong>Create “practice fields”:</strong> safe spaces/simulations to try new approaches.</li>
+        <li>3) <strong>Develop local line leaders:</strong> empower those closest to the work to experiment.</li>
+        <li>4) <strong>Build internal networks:</strong> connectors and coaches who spread practices.</li>
+        <li>5) <strong>Secure executive sponsorship:</strong> align incentives, remove structural barriers.</li>
+        <li>6) <strong>Invest in infrastructure:</strong> tools, data, simple system maps, facilitation skills.</li>
+        <li>7) <strong>Work across organizational boundaries:</strong> customers, suppliers, communities.</li>
+        <li>8) <strong>Measure what matters over time:</strong> trends, delays, leading indicators.</li>
+      </ul>
+
+      <h3>The Leader’s New Work</h3>
+      <ul>
+        <li><strong>Designer:</strong> architect systems/cultures that make learning inevitable.</li>
+        <li><strong>Steward:</strong> hold the long-term mission and people’s development in trust.</li>
+        <li><strong>Teacher:</strong> help others see structures and discover leverage points.</li>
+      </ul>
+
+      <h3>Systems Citizens</h3>
+      <ul>
+        <li>Everyone can practice systems citizenship: curiosity, responsibility, and partnership across the system.</li>
+        <li>Start small: name assumptions, map a feedback loop, run a safe-to-fail experiment.</li>
+      </ul>
+
+      <div class="divider"></div>
+      <p class="muted">Optional example to share: a time when a quick fix backfired (Fixes that Fail) and what a structural remedy would have been.</p>
     </section>
 
-    <section id="takeaway" class="sec card">
-      <h2>Takeaway<span class="time">(~0:30)</span></h2>
-      <p>
-        Learning organizations thrive by:
-        <ul>
-        <li>Seeing patterns, not snapshots</li>
-        <li>Encouraging openness and reflection</li>
-        <li>Aligning personal and collective aspirations</li>
-        <li>Fostering teamwork and shared understanding</li>
-        <li>Designing systems for long-term success</li>
-      </ul>
-      </p>
-    </section>
-
+    <!-- DIAGNOSTIC -->
     <section id="diagnostic" class="sec card">
-      <h2>Transition to Diagnostic (Use Session Code 'ALP') <span class="time">(~1:00)</span></h2>
-      <p>
-        “Let’s rate how strongly we practice each discipline—1 to 5. Submit your results; our
-        <strong>Group Snapshot</strong> will update live. We’re looking for patterns and leverage points, not blame.”
-      </p>
-      <ul class="muted">
-        <li>Explain sliders &amp; “Session Code” (ensure everyone uses the same one).</li>
-        <li>Invite brief reactions after the Group Snapshot appears.</li>
+      <h2>Transition to Diagnostic <span class="time">(~1:00)</span></h2>
+      <ul>
+        <li>“Let’s rate how strongly we practice each discipline—1 to 5.”</li>
+        <li>“Use the agreed Session Code so your scores roll into the <strong>Group Snapshot</strong>.”</li>
+        <li>Frame the reflection: look for <em>patterns & leverage</em>, not blame.</li>
       </ul>
     </section>
 
+    <!-- CLOSING -->
     <section id="close" class="sec card">
-      <h2>Closing <span class="time">(~0:20)</span></h2>
-      <p>
-        “Learning isn’t a department—it’s our operating system. When we see the system, we stop
-        firefighting and start creating the future we want.”
-      </p>
+      <h2>Closing <span class="time">(~0:30)</span></h2>
+      <ul>
+        <li>Learning isn’t a department—it’s the operating system of the organization.</li>
+        <li>When we see structures and feedback, we stop firefighting and start creating the future we want.</li>
+        <li>Invite reactions after the Group Snapshot appears; ask, “What small, high-leverage change could we try first?”</li>
+      </ul>
     </section>
 
     <div class="foot muted">
-      Source: Soundview Executive Summary of <em>The Fifth Discipline</em> (2011). These notes track the app’s Overview & Talking Points.
+      Drawn from the Soundview Executive Summary of <em>The Fifth Discipline</em> (2011) and aligned to the class app’s sections.
     </div>
   </main>
 
@@ -243,29 +302,22 @@
       if(!running){ return; }
       const elapsed = ts - t0;
       timerEl.textContent = fmt(elapsed);
-      // Nudge color as you approach 5:00
-      if (elapsed >= 4*60*1000 && elapsed < 5*60*1000) timerEl.style.color = '#fbbf24'; // amber
-      else if (elapsed >= 5*60*1000) timerEl.style.color = '#f87171'; // red
+      // Color guidance around 10–12 minutes
+      if (elapsed >= 10*60*1000 && elapsed < 12*60*1000) timerEl.style.color = '#fbbf24'; // amber
+      else if (elapsed >= 12*60*1000) timerEl.style.color = '#f87171'; // red
       else timerEl.style.color = '#38bdf8'; // accent
       rafId = requestAnimationFrame(tick);
     }
     startBtn.addEventListener('click', () => {
       if(!running){
-        running = true;
-        t0 = performance.now();
-        rafId = requestAnimationFrame(tick);
-        startBtn.textContent = 'Pause';
+        running = true; t0 = performance.now(); rafId = requestAnimationFrame(tick); startBtn.textContent = 'Pause';
       } else {
-        running = false;
-        cancelAnimationFrame(rafId);
-        startBtn.textContent = 'Resume';
+        running = false; cancelAnimationFrame(rafId); startBtn.textContent = 'Resume';
       }
     });
     resetBtn.addEventListener('click', () => {
       running = false; cancelAnimationFrame(rafId);
-      timerEl.textContent = '00:00';
-      timerEl.style.color = '#38bdf8';
-      startBtn.textContent = 'Start';
+      timerEl.textContent = '00:00'; timerEl.style.color = '#38bdf8'; startBtn.textContent = 'Start';
     });
 
     // --- Font size adjust (persists per device with localStorage) ---
@@ -273,15 +325,12 @@
     const fsMinus = document.getElementById('fsMinus');
     const KEY = 'presenter_notes_fontsize';
     function setFS(px){ document.documentElement.style.setProperty('--fs', px + 'px'); localStorage.setItem(KEY, px); }
-    const saved = Number(localStorage.getItem(KEY));
-    if (saved && saved >= 16 && saved <= 26) setFS(saved);
-    fsPlus.addEventListener('click', () => {
-      const curr = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--fs'));
-      setFS(Math.min(curr + 1, 26));
+    const saved = Number(localStorage.getItem(KEY)); if (saved && saved >= 16 && saved <= 26) setFS(saved);
+    fsPlus?.addEventListener('click', () => {
+      const curr = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--fs')); setFS(Math.min(curr + 1, 26));
     });
-    fsMinus.addEventListener('click', () => {
-      const curr = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--fs'));
-      setFS(Math.max(curr - 1, 16));
+    fsMinus?.addEventListener('click', () => {
+      const curr = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--fs')); setFS(Math.max(curr - 1, 16));
     });
   </script>
 </body>
